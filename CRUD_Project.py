@@ -11,9 +11,10 @@ csv_file_path = "products.csv"
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
-        print(dict(row))
         products.append(row)
-# 
+
+numberofproducts = len(products)
+
 # print("There are " + str(numberofproducts) + " products in the database. Please select an operation:
 # print("     operation  |  description")
 # print("     ---------  |  -------------------------------")
@@ -24,22 +25,23 @@ with open(csv_file_path, "r") as csv_file:
 # print("     'Destroy'  |  Delete an existing product.")
 # print("     'Done'     |  Exit.")
 #
-# operation = 0
+operation = 0
 
-operation = input("Please enter your operation: ")
+# operation = input("Please enter your operation: ")
 
+operation = "Show"
 
 if operation == "List":
    for row in products:
        print (row)
-if operation == "Show":
+elif operation == "Show":
     ProductID = input("Please enter your products Identifier: ")
     for product in products:
         if int(ProductID) == int(product["id"]):
-            print("Product Name: " + product["name"] + "Product Aisle: " + product["Aisle"] + "Department: " + product["Department"] + " (" + product["price"] + ")")
-if operation == "Create":
-
-if operation == "Update":
+            print(dict(product))
+elif operation == "Create":
+    print("pro")
+elif operation == "Update":
     itemnumber = input("Please Enter The Item Number You want to change: ")
     for itemnumber in products:
         if int(itemnumber) == int(product["id"]):
