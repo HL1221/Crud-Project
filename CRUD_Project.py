@@ -11,8 +11,7 @@ csv_file_path = "products.csv"
 with open(csv_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
-        products.append(row)
-
+        products.append(dict(row))
 
 numberofproducts = len(products)
 
@@ -51,6 +50,7 @@ def update_product():
             product["department"]= input("Change aisle from : " + product["department"] + " to: ")
             product["price"]= input("Change price from : " + product["price"] + " to: ")
 
+
 def destroy_product():
     itemnumber = input("Please enter the item number you want to destroy: ")
     for product in products:
@@ -60,7 +60,7 @@ def destroy_product():
             del product["aisle"]
             del product["department"]
             del product["price"]
-    print(products)
+
 
 print("There are " + str(len(products)) + " products in the database. Please select an operation:")
 print("     operation  |  description")
@@ -70,32 +70,28 @@ print("     'Show'     |  Show information about a product.")
 print("     'Create'   |  Add a new product.")
 print("     'Update'   |  Edit an existing product.")
 print("     'Destroy'  |  Delete an existing product.")
-print("     'Done'     |  Exit.")
 
-while True:
-    operation = 0
-    itemnumber = 0
+operation = 0
 
-    operation = input("Please enter your operation: ")
-    operation = operation.lower()
+operation = input("Please enter your operation: ")
+operation = operation.lower()
 
-    numberofproducts = len(products)
+numberofproducts = len(products)
 
-    if operation == "list":
-       for row in products:
-           print (row)
-    elif operation == "show":
-        show_product()
-    elif operation == "create":
-        create_product()
-    elif operation == "update":
-        update_product()
-    elif operation == "destroy":
-        destroy_product()
-    elif operation == "done":
-         break
-    else:
-        print("Please try again")
+if operation == "list":
+   for row in products:
+       print (row)
+elif operation == "show":
+    show_product()
+elif operation == "create":
+    create_product()
+elif operation == "update":
+    update_product()
+elif operation == "destroy":
+    destroy_product()
+    products = products1
+else:
+    print("Please try again")
 
 
 other_path = "new_products.csv"
